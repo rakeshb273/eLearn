@@ -1,8 +1,24 @@
-<div class="panel panel-primary" *ngFor="let course of allCourses | async">
+<div class="panel panel-primary" *ngFor="let course of allCourses">
   <div class="panel-heading">
-    <h3 class="panel-title">{{course.CourseName}}</h3>
+    <h3 class="panel-title">{{course.CourseName}} </h3>
+    <!-- <a routerLink={{course.ID}}></a> -->
   </div>
   <div class="panel-body">
-    <p>hello</p>
+    <div class="row">
+      <div class="col-md-4 col-sm-4">Course Code : {{course.CourseCode}} </div>
+      <div class="col-md-4 col-sm-4">Start Date :{{course.StartDate | date : "dd-MMM-yyyy"}}</div>
+      <div class="col-md-4 col-sm-4">Start Date :{{course.EndDate | date : "dd-MMM-yyyy"}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12"> {{course.Description}}</div> 
+    </div>
+    <div class="row">
+<div class="col-sm-12 col-md-12">
+  <!-- LEARNERS:
+  <ul><li *ngFor="let courseTakenNow of course.CoursesTakens"> {{courseTakenNow.Learner.FirstName+ " " + courseTakenNow.Learner.LastName}}</li></ul> -->
+</div>
+
+    </div>
   </div>
 </div>
+<p>hello</p>

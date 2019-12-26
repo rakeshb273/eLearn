@@ -19,7 +19,7 @@ export class CourseService {
     getCourses(): Observable<Course[]> {
       console.log("called service");
 
-      return this.http.get<Course[]>(this.Url + '');
+      return this.http.get<Course[]>(this.Url + '/Courses');
       console.log("end service");
          
     }

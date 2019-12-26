@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../models/courses.model'
 import { Observable } from 'rxjs';
 import {CourseService} from '../Courses/CourseService';
+import { HttpClient, HttpHeaders,HttpClientModule } from '@angular/common/http'; 
 
 @Component({
   selector: 'app-list-courses',
@@ -13,16 +14,18 @@ export class ListCoursesComponent
 
 implements OnInit {
   
-  allCourses: Observable < Course[] > ;
+  allCourses: any ;
   txt:string="hello";
+  Url = 'http://localhost:2588/Api'; 
   //allCourses: Course[]  ;
    getCourses(){
      console.log("called directly");
-     this.allCourses= this.courseServiceNow.getCourses();
+       this.http.get<any[]>(this.Url + '/Courses').subscribe((res)=>{this.allCourses=res});
+      //this.courseServiceNow.getCourses().subscribe(res=>this.allCourses=res);
      console.log("called directly end");
    }
   
-  constructor(private courseServiceNow:CourseService) { }
+  constructor(private courseServiceNow:CourseService,public http: HttpClient) { }
   ngOnInit() {
     console.log(this.txt)
    this.getCourses();
