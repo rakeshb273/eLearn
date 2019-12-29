@@ -20,7 +20,7 @@ implements OnInit {
   
   allCourses: any ;
   Url:string = 'http://localhost:2588/Api';
-  //search_S:SearchCourse;
+  search_S:SearchCourse;
   
   
    
