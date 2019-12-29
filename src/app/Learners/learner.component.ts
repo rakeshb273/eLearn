@@ -19,7 +19,6 @@ datePickerConfig : Partial<BsDatepickerConfig>;
 dateInputFormat:'DD/MMM/YYYY'});
    
    }
-
   ngOnInit() {
     this.http.get<any>(this.Url + '/Learners/'+this.route.params['value'].ID).subscribe((res)=>{this.Learner=res;
       this.Learner.DOB=moment(res.DOB).format('DD/MM/YYYY'); 
