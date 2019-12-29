@@ -25,16 +25,10 @@ dateInputFormat:'DD/MMM/YYYY'});
    }
 
   ngOnInit() {
-  //  this.course.ID= this.route.params['value'].ID;
-  //  this.course.CourseName="";
-  //  this.course.CourseCode="";
-  //  this.course.Description="";
-  //  this.course.StartDate=new Date(2019,12,12);
-  //  this.course.EndDate=new Date(2019,12,12);
-
-  //  this.http.get<{CourseName:string;CourseCode:string;Description:string}>(this.Url + '/Courses/'+this.course.ID).subscribe();
+   
    this.http.get<any>(this.Url + '/Courses/'+this.route.params['value'].ID).subscribe((res)=>{this.course=res;
     this.course.StartDate=moment(res.StartDate).format('DD/MM/YYYY'); 
+    this.course.EndDate=moment(res.EndDate).format('DD/MM/YYYY'); 
   });
     console.log(this.course)
    //(res)=>{this.course=res}
@@ -42,7 +36,7 @@ dateInputFormat:'DD/MMM/YYYY'});
   
   SaveCourse(){
     if(this.course.StartDate>this.course.EndDate){
-      
+
     }
     this.http.get(this.Url + '/Courses/CoursesExists/',this.course).subscribe(
       (res) =>{

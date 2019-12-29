@@ -1,3 +1,73 @@
-<p>
-  learner works!
-</p>
+
+ 
+    <form  #CourseForm="ngForm" class="maindiv" (ngSubmit)="SaveLearner(Learner)">
+        <div class="panel panel-primary maindiv"> 
+        <div class="panel-heading">
+          <h3 class="panel-title">  Learner</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+            <div class=" form-group col-md-4 col-sm-4" [class.has-error]="FirstName.invalid && FirstName.touched" [class.has-success]="FirstName.valid">
+                <label for="FirstName" class="control-label">First Name</label>
+                <input type="text" id="FirstName" class="form-control"   name="FirstName"   required autocomplete="off"  [(ngModel)]="this.Learner.FirstName" #FirstName="ngModel">
+                <span class="help-block" *ngIf="FirstName.invalid && FirstName.touched"> FirstName is requried.</span>
+            </div>
+            <div class="from-group col-md-4 col-sm-4" [class.has-error]="LastName.invalid && LastName.touched" [class.has-success]="LastName.valid">
+                <label for="LastName" class="control-label">Last Name</label>
+                <input type="text" id="LastName" class="form-control"   name="LastName"   required autocomplete="off"  [(ngModel)]="Learner.LastName" #LastName="ngModel">  
+                <span class="help-block" *ngIf="LastName.invalid && LastName.touched"> Last Name is requried.</span>          
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <label for="Image" class="control-label">Image URL</label>
+                <input type="text" id="Image" class="form-control"   name="Image"    autocomplete="off"  [(ngModel)]="Learner.ProfileImage" #ProfileImage="ngModel">
+                
+                
+            </div>
+            </div> 
+            <div class="row">
+              <div class="col-sm-8 col-md-8">
+            <div class="row">
+              <div class="form-group col-md-4 col-sm-4" [class.has-error]="Mobile.invalid && Mobile.touched" [class.has-success]="Mobile.valid">
+                  <label for="Mobile" class="control-label"> Mobile</label>
+                  <input   type="text" id="Mobile" class="form-control"   name="Mobile"   required autocomplete="off"  [(ngModel)]="Learner.Mobile" #Mobile="ngModel"/>
+                  <span class="help-block" *ngIf="Mobile.invalid && Mobile.touched"> Mobile is requried.</span>
+              </div>
+              <div class="Form-group col-sm-4 col-md-4"   > 
+                  <label for="Mobile" class="control-label"> DOB</label>
+                  
+                  <input type="text" id="DOB" class="form-control"   name="DOB" bsDatepicker  [bsConfig]="datePickerConfig" required autocomplete="off"  [(ngModel)]="Learner.DOB" #DOB="ngModel">
+                  
+                  
+                </div>
+                  <div class="col-sm-4 col-md-4">
+                  <label for="Gender" class="control-label"> Gender</label>
+                  <input type="text" id="Gender" class="form-control"   name="Gender"    [(ngModel)]="Learner.Gender" #Gender="ngModel">
+                </div>
+            </div>
+              
+          </div>
+          <div class="col-sm-4 col-md-4">
+
+               
+              <img [src]="Learner.ProfileImage" style="width: 100px;height: 100px; padding-left:20px" width="10px" height="10px">
+          </div>
+            </div>
+<div class="row">
+            <div class="col-sm-12 col-md-12">
+                LEARNERS:
+                <div class="Learners">
+                <ul id="lstLearners"><li *ngFor="let courseTakenNow of Learner.CoursesTakens"><a routerLink="../Learners/{{courseTakenNow.CourseID}}"  > {{courseTakenNow.Courses.CourseName}} 
+                </a>
+                  <span class="delIcon" (click)="removeLearner(courseTakenNow.ID)" > X </span>    </li></ul>
+              </div>
+            </div>
+    </div>
+  </div>
+       
+      <div class="panel-footer">
+          <button type="button"  class="btn btn-primary">Back</button> 
+          <button type="submit" class="btn btn-primary" [disabled]="CourseForm.invalid">Save</button>
+          <button type="button" onclick="DeleteLearner()" class="btn btn-primary"  >Delete</button>
+          </div>
+        </div>
+    </form>

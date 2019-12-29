@@ -100,3 +100,6 @@ ul#lstLearners li {
   height: 30px !important;
     margin-top: -7px !important;
   }
+  .btn{
+    margin-right: 10px !important;
+  }

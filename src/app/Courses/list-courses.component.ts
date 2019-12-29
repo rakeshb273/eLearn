@@ -21,14 +21,16 @@ implements OnInit {
   allCourses: any ;
   Url:string = 'http://localhost:2588/Api';
   search_S:SearchCourse;
-  
+  datePickerConfig : Partial<BsDatepickerConfig>;
   
    
   
   
   constructor(private courseServiceNow:CourseService,public http: HttpClient,private route: ActivatedRoute ) { 
-    // this.datePickerConfig=Object.assign({},{containerClass:'theme-dark-blue',showWeekNumbers:false,   
-    // dateInputFormat:'DD/MMM/YYYY'});
+     this.datePickerConfig=Object.assign({},{
+       containerClass:'theme-dark-blue',
+       showWeekNumbers:false,
+            dateInputFormat:'DD/MMM/YYYY'});
   }
   ngOnInit() {
     
@@ -37,7 +39,8 @@ implements OnInit {
    
   }
   getCourses(){ 
-        this.http.get<any[]>(this.Url + '/Courses').subscribe((res)=>{this.allCourses=res});
+        this.http.get<any[]>(this.Url + '/Courses').subscribe((res)=>{this.allCourses=res;});
+        console.log(this.allCourses)
   }
   DeleteCourse(idNow:number){
     this.http.delete(this.Url + '/Courses/'+idNow).subscribe(() => console.log("Course deleted"));
