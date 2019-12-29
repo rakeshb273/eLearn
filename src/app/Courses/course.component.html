@@ -1,17 +1,69 @@
- 
-    <form   >
-    <div class="panel panel-primary"  > 
-    <div class="panel-heading">
-      <h3 class="panel-title">Create Course</h3>
-    </div>
-    <div class="panel-body">
-  <div class="form-group"  >
-  <label for="name" class="control-label"> Name</label>
- 
 
-  <input type="text" id="StartDate" class="form-control"   name="StartDate" bsDatepicker  [bsConfig]="datePickerConfig" required autocomplete="off">
-  <input type="text" id="EndDate" class="form-control"   name="EndDate" bsDatepicker  [bsConfig]="datePickerConfig" required autocomplete="off">
+ 
+    <form  #CourseForm="ngForm"  (ngSubmit)="SaveCourse(course)">
+        <div class="panel panel-primary"  > 
+        <div class="panel-heading">
+          <h3 class="panel-title">  Course</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+            <div class=" form-group col-md-8 col-sm-8" [class.has-error]="CourseName.invalid && CourseName.touched" [class.has-success]="CourseName.valid">
+                <label for="CourseName" class="control-label">Course Name</label>
+                <input type="text" id="CourseName" class="form-control"   name="CourseName"   required autocomplete="off"  [(ngModel)]="course.CourseName" #CourseName="ngModel">
+                <span class="help-block" *ngIf="CourseName.invalid && CourseName.touched"> CourseName is requried.</span>
+            </div>
+            <div class="from-group col-md-4 col-sm-4" [class.has-error]="CourseCode.invalid && CourseCode.touched" [class.has-success]="CourseCode.valid">
+                <label for="CourseCode" class="control-label">Course Code</label>
+                <input type="text" id="CourseCode" class="form-control"   name="CourseCode"   required autocomplete="off"  [(ngModel)]="course.CourseCode" #CourseCode="ngModel">  
+                <span class="help-block" *ngIf="CourseCode.invalid && CourseCode.touched"> CourseCode is requried.</span>          
+            </div>
+            </div> 
+            <div class="row">
+              <div class="col-sm-8 col-md-8">
+            <div class="row">
+              <div class="form-group col-md-12 col-sm-12" [class.has-error]="Description.invalid && Description.touched" [class.has-success]="Description.valid">
+                  <label for="Description" class="control-label"> Description</label>
+                  <textarea   rows="3" id="Description" class="form-control"   name="Description"   required autocomplete="off"  [(ngModel)]="course.Description" #Description="ngModel"></textarea>
+                  <span class="help-block" *ngIf="Description.invalid && Description.touched"> Description is requried.</span>
+              </div>
+            </div>
+            <div class="row"  >
+          <div class="Form-group col-sm-6 col-md-6"  [class.has-error]="StartDate.invalid && StartDate.touched" [class.has-success]="StartDate.valid"> 
+      <label for="name" class="control-label"> Start Date</label>
+      
+      <input type="text" id="StartDate" class="form-control"   name="StartDate" bsDatepicker  [bsConfig]="datePickerConfig" required autocomplete="off"  [(ngModel)]="course.StartDate" #StartDate="ngModel">
+      <span class="help-block" *ngIf="StartDate.invalid && StartDate.touched"> StartDate is requried.</span>
+    </div>
+      <div class="col-sm-6 col-md-6">
+      <label for="name" class="control-label"> End Date</label>
+      <input type="text" id="EndDate" class="form-control"   name="EndDate" bsDatepicker  [bsConfig]="datePickerConfig" required autocomplete="off"  [(ngModel)]="course.EndDate" #EndDate="ngModel">
+    </div>
+            </div> 
+          </div>
+          <div class="col-sm-4 col-md-4">
+
+              <label for="Image" class="control-label">Image URL</label>
+              <input type="text" id="Image" class="form-control"   name="Image"   required autocomplete="off"  [(ngModel)]="course.Image" #Image="ngModel">
+              <img [src]="course.Image">
+          </div>
+            </div>
+<div class="row">
+            <div class="col-sm-12 col-md-12">
+                LEARNERS:
+                <div class="Learners">
+                <ul id="lstLearners"><li *ngFor="let courseTakenNow of course.CoursesTakens"><a routerLink="../Learners/{{courseTakenNow.Learner.ID}}"  > {{courseTakenNow.Learner.FirstName+ " " + courseTakenNow.Learner.LastName}} 
+                </a>
+                  <span class="delIcon" (click)="removeLearner(courseTakenNow.ID)" > X </span>    </li></ul>
+              </div>
+            </div>
+    </div>
   </div>
-  </div>
-  </div>
-</form>
+       
+      <div class="panel-footer">
+          <button type="button"  class="btn btn-primary">Back</button> 
+          <button type="submit" class="btn btn-primary" [disabled]="CourseForm.invalid">Save</button>
+          <button type="button" onclick="DeleteCourse()" class="btn btn-primary"  >Delete</button>
+          </div>
+        </div>
+    </form>
+    obj now  {{CourseForm | json}}

@@ -1,13 +1,13 @@
 import { CoursesTaken } from './CoursesTaken.model';
 
 export class Course {
-  id:Number;
+  ID:Number;
   CourseName:string;
   CourseCode:string;
   Description:string;
   StartDate:Date;
   EndDate:Date;
   isActive:boolean;
-  image?:string;  
+  Image?:string;  
   CoursesTakens?:CoursesTaken[];  
 }
