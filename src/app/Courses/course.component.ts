@@ -15,7 +15,7 @@ import * as moment from "moment";
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
-  course: any;
+  course: Course= new Course();
   Url:string = 'http://localhost:2588/Api';
 datePickerConfig : Partial<BsDatepickerConfig>;
   constructor(private route: ActivatedRoute,public http: HttpClient) {
@@ -27,24 +27,27 @@ dateInputFormat:'DD/MMM/YYYY'});
   ngOnInit() {
    
    this.http.get<any>(this.Url + '/Courses/'+this.route.params['value'].ID).subscribe((res)=>{this.course=res;
-    this.course.StartDate=moment(res.StartDate).format('DD/MM/YYYY'); 
-    this.course.EndDate=moment(res.EndDate).format('DD/MM/YYYY'); 
+    // this.course.StartDate=moment(res.StartDate).format('DD/MM/YYYY'); 
+    // this.course.EndDate=moment(res.EndDate).format('DD/MM/YYYY');  
   });
     console.log(this.course)
    //(res)=>{this.course=res}
   }
   
-  SaveCourse(){
-    if(this.course.StartDate>this.course.EndDate){
+  SaveCourse(courseNow:Course){
+    // if(this.course.StartDate>this.course.EndDate){
 
-    }
-    this.http.get(this.Url + '/Courses/CoursesExists/',this.course).subscribe(
+    // }
+
+// console.log(courseNow);
+//     this.http.post<Course>(this.Url + '/Courses',courseNow).subscribe(() => alert("Course Details Added"));
+    this.http.get<Course[]>(this.Url + '/Courses/isCoursesExists?width=' + this.course.CourseCode + '&depth=' + this.course.CourseName).subscribe(
       (res) =>{
         if(!res){
           this.http.put(this.Url + '/Courses',this.course).subscribe(() => alert("Course Details saved"));
         }
         else{
-          this.http.post(this.Url + '/Courses',this.course).subscribe(() => alert("Course Details Added"));
+          this.http.post<Course>(this.Url + '/Courses',this.course).subscribe(() => alert("Course Details Added"));
         }
       } 
       

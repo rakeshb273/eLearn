@@ -42,7 +42,7 @@
 
 <div class="col-sm-4 col-md-4 list-type1">
   LEARNERS:
-  <ul id="lstLearners"><li *ngFor="let courseTakenNow of course.CoursesTakens; let i=index"><a routerLink="../Learners/{{courseTakenNow.Learner.ID}}" *ngIf="i<3" > {{courseTakenNow.Learner.FirstName+ " " + courseTakenNow.Learner.LastName}} </a> </li></ul>
+  <ul id="lstLearners"><li *ngFor="let courseTakenNow of course.CoursesTakens; let i=index"><a routerLink="../Learners/{{courseTakenNow.LearnerID}}" *ngIf="i<3" > {{courseTakenNow.LearnerName}} </a> </li></ul>
 </div>
 </div> 
 </div>
