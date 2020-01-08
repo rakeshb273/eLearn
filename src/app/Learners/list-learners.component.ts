@@ -16,7 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ListLearnersComponent implements OnInit {
 
   allLearners: any ;
-  name_S:string;
+  learnerText:string;
   Url:string = 'http://localhost:2588/Api';
   datePickerConfig : Partial<BsDatepickerConfig>;
   constructor(public http: HttpClient,private route: ActivatedRoute) { 
@@ -35,7 +35,7 @@ getLearners(){
     this.http.delete(this.Url + '/Learners/'+idNow).subscribe(() => console.log("Course deleted"));
   }
   search(){
-    this.http.get<any[]>(this.Url + '/Learners/Search/'+this.name_S).subscribe((res)=>{this.allLearners=res});
+    this.http.get<any[]>(this.Url + '/Learners/Search/'+this.learnerText).subscribe((res)=>{this.allLearners=res});
   }
 
 

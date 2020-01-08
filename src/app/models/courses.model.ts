@@ -11,3 +11,4 @@ export class Course {
   Image?:string;  
   CoursesTakens?:CoursesTaken[];  
 }
+ 

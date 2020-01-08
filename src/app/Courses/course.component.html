@@ -1,7 +1,7 @@
 
  
     <form  #CourseForm="ngForm"  (ngSubmit)="SaveCourse(course)">
-        <div class="panel panel-primary maindiv"> 
+        <div class="panel panel-primary mainDiv"> 
         <div class="panel-heading">
           <h3 class="panel-title">  Course</h3>
         </div>
@@ -48,7 +48,21 @@
           </div>
             </div>
 <div class="row">
-            <div class="col-sm-12 col-md-12">
+  <div  class="col-sm-6 col-md-6">
+      <label >
+          Add Learners
+       </label>
+       <select id="ddlLearners" name="ddlLearners"   multiple class="form-control"> 
+         <option *ngFor="let learner of learners" [value]="learner.ID">{{learner.LearnerName}}</option>
+        
+       </select>
+
+  </div>
+  <div class="col-md-1 col-sm-1"><br><br>
+    
+      <button type="button" onclick="AddLearner()" class="btn btn-primary"> Add</button>
+  </div>
+            <div class="col-sm-5 col-md-5">
                 LEARNERS:
                 <div class="Learners">
                 <ul id="lstLearners"><li *ngFor="let courseTakenNow of course.CoursesTakens"><a routerLink="../Learners/{{courseTakenNow.LearnerID}}"  > {{courseTakenNow.LearnerName}} 
@@ -56,7 +70,9 @@
                   <span class="delIcon" (click)="removeLearner(courseTakenNow.ID)" > X </span>    </li></ul>
               </div>
             </div>
+            
     </div>
+    <br>
   </div>
        
       <div class="panel-footer">

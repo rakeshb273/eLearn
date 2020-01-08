@@ -1,8 +1,6 @@
  
 export class SearchCourse {
-  //date_S:date;
+  date_S:Date;
   name_S:string;
-  constructor(parameters) {
-    
-  }
+   
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../models/courses.model'
+import { Course, } from '../models/courses.model'
 import { SearchCourse } from '../models/SearchCourse.model'
 import { Observable } from 'rxjs';
 import {CourseService} from '../Courses/CourseService';
@@ -20,9 +20,9 @@ implements OnInit {
   
   allCourses: any ;
   Url:string = 'http://localhost:2588/Api';
-  search_S:SearchCourse;
+  //search_S:SearchCourse;
   datePickerConfig : Partial<BsDatepickerConfig>;
-  
+  searchtext:string;
    
   
   
@@ -34,7 +34,8 @@ implements OnInit {
   }
   ngOnInit() {
     
-   
+  //  this.search_S.date_S=null;
+  //  this.search_S.date_S=Date.now();
    this.getCourses();
    
   }
@@ -46,7 +47,7 @@ implements OnInit {
     this.http.delete(this.Url + '/Courses/'+idNow).subscribe(() => console.log("Course deleted"));
   }
   search(){
-    this.http.get<any[]>(this.Url + '/Courses/Search/',).subscribe((res)=>{this.allCourses=res});
+    this.http.get<any[]>(this.Url + '/Courses/Search/'+this.searchtext).subscribe((res)=>{this.allCourses=res});
   }
    
 }

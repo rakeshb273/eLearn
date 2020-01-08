@@ -1,4 +1,4 @@
-<div class="panel panel-primary mainDiv">
+<div class="panel panel-primary " style="width:80% ;margin-left:10%">
     <div class="panel-heading">
         <h3 class="panel-title"> Search Courses</h3>  
       </div>
@@ -6,14 +6,14 @@
         <div class="row">
             <div class="col-md-4 col-sm-4">
                               <label for="name_S" class="control-label"> Course</label>
-                  <input type="text" id="name_S" class="form-control"   name="name_S" placeholder="Provide course name  ,course code to search"  required autocomplete="off"    />
+                  <input type="text" id="name_S" class="form-control"   name="name_S" placeholder="Provide course name  ,course code to search" [(ngModel)]="searchtext"  autocomplete="off"    />
                           </div>
                           <div class="col-md-4 col-sm-4">
                   <label for="date_S" class="control-label">Date</label>
-                              <input type="text" id="date_S" class="form-control"   name="date_S" bsDatepicker  [bsConfig]="datePickerConfig" required autocomplete="off" placeholder="Date"   />
+                              <input type="text" id="date_S" class="form-control"   name="date_S" bsDatepicker  [bsConfig]="datePickerConfig" required autocomplete="off"   placeholder="Date"   />
                           </div>
           <div class="col-md-4 col-sm-4">
-            <button type="button" class="btn btn-warning" onclick="search()">Search</button>
+            <button type="button" class="btn btn-warning" (click)="search()">Search</button>
             <a type="button" class="btn btn-warning" routerLink="../Course/0">New Course</a>
           </div>
         </div>
